@@ -7,6 +7,8 @@ def count_characters(text):
     characters = {}
     text = text.lower()
     for char in text:
+        if char.isspace():  # Skip spaces
+            continue
         if char in characters:
             characters[char] += 1
         else:
@@ -18,7 +20,7 @@ def sort_on(item):
     
 def print_characters(characters_list):
     for char, count in characters_list:
-        print(f"The '{char}' character was found {count} times")
+        print(f"{char}: {count}")
     print("===================================")
 
 def print_report(characters, words, book_path):
@@ -27,9 +29,7 @@ def print_report(characters, words, book_path):
     print("----------- Word Count ----------")
     print(f"Found {words} total words     ")
     print("----------- Character Count --------")
-    # Convert dictionary to list of tuples and sort by frequency
     characters_list = list(characters.items())
     characters_list.sort(reverse=True, key=sort_on)
     print_characters(characters_list)
-    
     print("============= END ===============")
